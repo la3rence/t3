@@ -22,19 +22,18 @@ export function LatestTODO() {
   });
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="w-full max-w-xl">
       {latestTodo ? (
         <>
-          <p className="truncate">Your most recent todo: {latestTodo.name}</p>
+          <p className="">Your most recent todo: {latestTodo.name}</p>
           <span className={"text-sm text-gray-400"}>
-            click number to remove
+            click item to remove
           </span>
         </>
       ) : (
         <p>🎉 You have no todos yet.</p>
       )}
       <div>
-        <h4 className="my-2 text-2xl font-bold">TODOs</h4>
         <ul className={"my-2"}>
           {allTodos?.map((todo) => (
             <div
@@ -42,7 +41,8 @@ export function LatestTODO() {
               className={"my-1 cursor-pointer hover:line-through"}
               onClick={() => deleteTodo.mutate({ id: todo.id })}
             >
-              <span className={"font-mono"}> {todo.id} </span>
+              <span
+                className={"font-mono mr-2"}> {todo.updatedAt.toLocaleDateString()} {todo.updatedAt.toLocaleTimeString()}</span>
               <span>{todo.name}</span>
             </div>
           ))}
